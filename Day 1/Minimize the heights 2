@@ -1,0 +1,25 @@
+class Solution {
+    int getMinDiff(int[] arr, int n, int k) {
+        // code here
+        //1.sort the array
+        Arrays.sort(arr);
+        //largest-smallest wil e the ans
+        int ans=arr[n-1]-arr[0];
+        //smallest element will be add up to reduce the distance
+        int smallest=arr[0]+k;
+        int largest=arr[n-1]-k; //largest will be reduced by k
+        
+        int mi=0;
+        int ma=0;
+        for(int i=0;i<n-1;i++){
+            mi=Math.min(smallest,arr[i+1]-k);
+            ma=Math.max(largest,arr[i]+k);
+            
+            if(mi<0){
+                continue;
+            }
+            ans=Math.min(ans,ma-mi);
+        }
+        return ans;
+    }
+}
